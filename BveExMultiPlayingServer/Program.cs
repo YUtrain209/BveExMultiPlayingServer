@@ -114,7 +114,8 @@ namespace BveExMultiPlayingPluginServer
 
                                 $"- {clientData[receivedData.ClientId]}" + Environment.NewLine +
                                 $"- 位置: {receivedData.Location:F1}" +
-                                $", 速度: {receivedData.Speed:F1}" + Environment.NewLine);
+                                $", 速度: {receivedData.Speed:F1}" +
+                                $", 列車長: {receivedData.Length}" + Environment.NewLine);
                         }
                     }
 
@@ -140,7 +141,7 @@ namespace BveExMultiPlayingPluginServer
                         allData = new List<TrainInfo>();
                         foreach (var entry in clientData)
                         {
-                            allData.Add(new TrainInfo { ClientId = entry.Key, TrainNumber = entry.Value.TrainNumber, Location = entry.Value.Location, Speed = entry.Value.Speed });
+                            allData.Add(new TrainInfo { ClientId = entry.Key, TrainNumber = entry.Value.TrainNumber, Location = entry.Value.Location, Speed = entry.Value.Speed, Length = entry.Value.Length });
                         }
                     }
 
@@ -256,6 +257,8 @@ namespace BveExMultiPlayingPluginServer
         private double location = 0;
         //速度
         private double speed = 0;
+        //列車長
+        private int length = 0;
 
         //情報の設定
         public void SetInfo(string clientId, string trainNumber, double location, double speed)
@@ -264,6 +267,7 @@ namespace BveExMultiPlayingPluginServer
             this.trainNumber = trainNumber;
             this.location = location;
             this.speed = speed;
+            this.length = length;
         }
 
         //全列車情報の表示・取得
@@ -293,12 +297,18 @@ namespace BveExMultiPlayingPluginServer
             set { speed = value; }
             get { return speed; }
         }
+        public int Length
+        {
+            set { length = value; }
+            get { return length; }
+        }
     }
     //旧コード
     public class LocationSpeedData
     {
         public double Location { get; set; }
         public double Speed { get; set; }
+        public int Length { get; set; }
     }
     public class TrainStatus
     {
