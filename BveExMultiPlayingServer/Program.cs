@@ -261,7 +261,7 @@ namespace BveExMultiPlayingPluginServer
         private int length = 0;
 
         //情報の設定
-        public void SetInfo(string clientId, string trainNumber, double location, double speed)
+        public void SetInfo(string clientId, string trainNumber, double location, double speed, int length)
         {
             this.clientId = clientId;
             this.trainNumber = trainNumber;
